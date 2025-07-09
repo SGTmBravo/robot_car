@@ -1,0 +1,2 @@
+robot_car:rosserial
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/robot_car_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/robot_car_ws/install -G Unix Makefiles

@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/robot_car_ws/devel_isolated/robot_car
+
+Name: robot_car
+Description: Description of robot_car
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

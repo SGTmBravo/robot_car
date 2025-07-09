@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ubuntu/robot_car_ws/install_isolated/setup.sh
