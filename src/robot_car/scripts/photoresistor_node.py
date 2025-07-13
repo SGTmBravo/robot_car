@@ -13,7 +13,7 @@ def main():
     rate = rospy.Rate(5)  # Hz
 
     while not rospy.is_shutdown():
-        light_detected = sensor.value  # 1 if light, 0 if dark
+        light_detected = not sensor.value  # Inverted: 0 if light, 1 if dark (so we flip it)
         pub.publish(Bool(data=bool(light_detected)))
         rospy.loginfo(f"Start LED: {'ON' if light_detected else 'OFF'}")
         rate.sleep()

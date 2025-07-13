@@ -13,7 +13,7 @@ def main():
 
     rate = rospy.Rate(10)
     while not rospy.is_shutdown():
-        triggered = switch.is_pressed
+        triggered = not switch.is_pressed  # Inverted: switch reads opposite
         pub.publish(Bool(data=triggered))
         rospy.loginfo(f"Limit switch: {'PRESSED' if triggered else 'RELEASED'}")
         rate.sleep()
