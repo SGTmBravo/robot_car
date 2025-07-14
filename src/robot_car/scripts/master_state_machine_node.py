@@ -83,13 +83,6 @@ def stop_robot():
     wheel_pub.publish(msg)
     rospy.sleep(0.1)
 
-def drop_beacon():
-    rospy.loginfo("🟢 Dropping beacon with motor ID 6...")
-    # Replace with real call to claw motor control node
-    # For example: publish to /claw_command topic or call service
-    time.sleep(1.0)
-    rospy.loginfo("✅ Beacon dropped")
-
 # === CALLBACKS ===
 def start_led_callback(msg):
     global start_triggered
@@ -163,8 +156,15 @@ def main():
     # === STEP 3: Drop beacon ===
     rospy.loginfo("🟢 Dropping beacon...")
     beacon_pub = rospy.Publisher('/beacon_drop', Bool, queue_size=1)
+    rospy.sleep(0.5)  # Allow publisher to establish connection
     beacon_pub.publish(True)
+    rospy.loginfo("🟢 Beacon drop command sent, waiting for completion...")
     rospy.sleep(2.0)
+    
+    # Optional: Retract beacon arm (uncomment if desired)
+    # rospy.loginfo("🔵 Retracting beacon arm...")
+    # beacon_pub.publish(False)
+    # rospy.sleep(1.5)
 
     # === STEP 4: Into the cave and back to White 4 ===
     # Original: 0.23m → Precise: 9.055"
@@ -188,15 +188,17 @@ def main():
     # === STEP 9: Grab container at White 7 and drag back ===
     rospy.loginfo("🤖 Closing claw to grab container...")
     claw_pub = rospy.Publisher('/claw_control', Bool, queue_size=1)
+    rospy.sleep(0.5)  # Allow publisher to establish connection
     claw_pub.publish(True)  # Close claw to grab
     rospy.sleep(2.0)
     #  === STEP 10: Move back with container
     move_robot_inches(43, 0.0, 0)
     #move_robot_inches(-12.598, 0.0, 0)
 
-    #rospy.loginfo("🤖 Opening claw to release container...")
-    #claw_pub.publish(False)  # Open claw to release
-    #rospy.sleep(2.0)
+    # Optional: Release container (uncomment if desired)
+    # rospy.loginfo("🤖 Opening claw to release container...")
+    # claw_pub.publish(False)  # Open claw to release
+    # rospy.sleep(2.0)
 
     rospy.loginfo("🏁 Task sequence complete")
 
