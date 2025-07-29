@@ -8,8 +8,8 @@ source /opt/ros/noetic/setup.bash
 source /home/ubuntu/robot_car_ws/devel/setup.bash
 
 # Set ROS environment variables
-export ROS_MASTER_URI=http://localhost:11311
-export ROS_HOSTNAME=localhost
+export ROS_MASTER_URI=http://pi-focal:11311
+export ROS_HOSTNAME=pi-focal
 
 # Kill any existing processes
 echo "Stopping existing processes..."

@@ -21,8 +21,8 @@ const uint8_t ALL_MOTOR_IDS[6] = {1, 2, 3, 4, 5, 6};
 // Position control for claw and beacon
 const uint32_t CLAW_OPEN = 1024;
 const uint32_t CLAW_CLOSED = 2048;
-const uint32_t BEACON_UP = 1024;
-const uint32_t BEACON_DOWN = 2048;
+const uint32_t BEACON_UP = 2048;
+const uint32_t BEACON_DOWN = 1024;
 
 // Movement control
 unsigned long movement_start = 0;
